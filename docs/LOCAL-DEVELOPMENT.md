@@ -1,43 +1,37 @@
-# 本地开发指南
+# 本地开发说明
+
+本文档帮助新成员快速了解本项目（AndroidCompose）的用途、搭建本地环境，并完成构建、测试与启动应用。
 
 ## 项目简介
 
-这是一个基于 Jetpack Compose 的 Android 示例应用，演示 Compose UI 与常规 Android 工程结构，适合作为 Compose 开发入门参考。
+这是一个基于 Jetpack Compose 的 Android 示例应用，用于演示使用 Compose 构建界面和基础业务逻辑。
 
 ## 环境要求
 
-- JDK：使用项目 Gradle 配置所要求的 JDK 版本（通常为 JDK 17）。
-- Android SDK：安装 Android SDK，并配置 `ANDROID_HOME` 环境变量。
-- Android Studio：建议使用最新稳定版，便于管理 SDK、Gradle 与模拟器。
-- 若使用命令行，请确保 Java 环境变量已正确配置。
+- JDK：17 或更高版本（与项目 Gradle 配置一致）。
+- Android SDK：通过 Android Studio 安装项目所需平台与构建工具。
+- IDE：推荐使用 Android Studio 最新稳定版。
+- 模拟器或真机：用于运行应用。
 
-具体版本以项目根目录中的 Gradle 配置为准。
+## 构建
 
-## 构建项目
-
-使用 Android Studio：
-
-1. 打开项目根目录。
-2. 等待 Gradle 同步完成。
-3. 点击 Build > Make Project。
-
-命令行构建：
+在项目根目录执行：
 
 ```bash
 ./gradlew assembleDebug
 ```
 
-生成的 APK 位于 `app/build/outputs/apk/debug/`。
+或使用 Android Studio 菜单 `Build > Make Project`。
 
-## 运行测试
+## 测试
 
-运行所有单元测试：
+运行单元测试：
 
 ```bash
 ./gradlew test
 ```
 
-如需运行仪器测试，请先连接模拟器或真机：
+运行插桩测试（需连接设备或模拟器）：
 
 ```bash
 ./gradlew connectedAndroidTest
@@ -45,16 +39,15 @@
 
 ## 启动应用
 
-1. 启动 Android 模拟器，或通过 USB 连接已开启开发者模式并授权的真机。
-2. 使用 Android Studio 点击 Run 按钮运行应用。
-3. 也可使用命令行安装到已连接的设备：
+1. 在 Android Studio 中创建或选择模拟器（AVD），或通过 USB 连接已开启开发者模式的真机。
+2. 点击运行按钮，选择 `app` 模块并部署到设备。
+
+也可使用命令行安装调试包：
 
 ```bash
 ./gradlew installDebug
 ```
 
-4. 在设备上找到应用图标并点击启动。
-
 ## 敏感信息提醒
 
-开发过程中请勿在代码、配置或文档中提交 API Key、密码、Token 等敏感信息。请使用本地环境变量或未跟踪的配置文件管理机密信息，并确保 `.gitignore` 已忽略相关文件。
+开发过程中严禁提交 API Key、密码、Token 等敏感信息。请在本地使用环境变量或 `local.properties`（该文件不应被提交）管理密钥，提交代码前检查是否包含敏感内容。
