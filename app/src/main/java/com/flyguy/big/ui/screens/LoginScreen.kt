@@ -11,7 +11,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -57,20 +56,30 @@ fun LoginScreen(
 
     val themeColor = colorResource(id = R.color.themeColor)
 
+    // 使用系统默认 Android 机器人图标，转换为 Painter
+    val androidIcon: Painter? = remember {
+        context.getDrawable(android.R.drawable.sym_def_app_icon)?.let { drawable ->
+            androidx.compose.ui.graphics.asImageBitmap(drawable.toBitmap()).asPainter()
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Top
     ) {
         // 顶部居中显示默认 Android 机器人图标
-        Icon(
-            painter = painterResource(id = android.R.drawable.sym_def_app_icon),
-            contentDescription = "Android 机器人图标",
-            modifier = Modifier.size(56.dp),
-            tint = Color.Unspecified
-        )
+        Spacer(modifier = Modifier.height(48.dp))
+        if (androidIcon != null) {
+            Icon(
+                painter = androidIcon,
+                contentDescription = "Android 机器人图标",
+                modifier = Modifier.size(56.dp),
+                tint = Color.Unspecified
+            )
+        }
 
         Spacer(modifier = Modifier.height(24.dp))
 
