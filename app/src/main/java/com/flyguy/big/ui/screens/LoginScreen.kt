@@ -1,6 +1,7 @@
 package com.flyguy.big.ui.screens
 
 import android.widget.Toast
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -77,9 +78,14 @@ fun LoginScreen(
             label = { Text("账号") },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
+            shape = RoundedCornerShape(50.dp),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = themeColor,
-                focusedLabelColor = themeColor
+                unfocusedBorderColor = themeColor.copy(alpha = 0.4f),
+                focusedContainerColor = themeColor.copy(alpha = 0.08f),
+                unfocusedContainerColor = themeColor.copy(alpha = 0.04f),
+                focusedLabelColor = themeColor,
+                unfocusedLabelColor = themeColor.copy(alpha = 0.6f)
             )
         )
 
@@ -93,9 +99,14 @@ fun LoginScreen(
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             singleLine = true,
+            shape = RoundedCornerShape(50.dp),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = themeColor,
-                focusedLabelColor = themeColor
+                unfocusedBorderColor = themeColor.copy(alpha = 0.4f),
+                focusedContainerColor = themeColor.copy(alpha = 0.08f),
+                unfocusedContainerColor = themeColor.copy(alpha = 0.04f),
+                focusedLabelColor = themeColor,
+                unfocusedLabelColor = themeColor.copy(alpha = 0.6f)
             )
         )
 
