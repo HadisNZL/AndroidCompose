@@ -56,13 +56,12 @@ fun LoginScreen(
 
     val themeColor = colorResource(id = R.color.themeColor)
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+            .padding(24.dp)
     ) {
+        // 顶部居中图标
         Image(
             painter = painterResource(id = R.drawable.ai_icon),
             contentDescription = "登录图标",
@@ -71,64 +70,70 @@ fun LoginScreen(
                 .align(Alignment.TopCenter)
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Text(
-            text = "欢迎登录",
-            fontSize = 28.sp,
-            fontWeight = FontWeight.Bold,
-            color = themeColor
-        )
-        
-        Spacer(modifier = Modifier.height(40.dp))
-
-        OutlinedTextField(
-            value = loginName,
-            onValueChange = { loginName = it },
-            label = { Text("账号") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true,
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = themeColor,
-                focusedLabelColor = themeColor
-            )
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
-            label = { Text("密码") },
-            modifier = Modifier.fillMaxWidth(),
-            visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            singleLine = true,
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = themeColor,
-                focusedLabelColor = themeColor
-            )
-        )
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        if (state.error != null) {
-            Text(text = state.error!!, color = Color.Red, fontSize = 14.sp)
-            Spacer(modifier = Modifier.height(16.dp))
-        }
-
-        Button(
-            onClick = { viewModel.dispatch(LoginIntent.Login(loginName, password)) },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            enabled = !state.isLoading,
-            colors = ButtonDefaults.buttonColors(containerColor = themeColor)
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            if (state.isLoading) {
-                CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
-            } else {
-                Text(text = "登 录", fontSize = 18.sp, color = Color.White)
+            Spacer(modifier = Modifier.height(80.dp))
+
+            Text(
+                text = "欢迎登录",
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold,
+                color = themeColor
+            )
+            
+            Spacer(modifier = Modifier.height(40.dp))
+
+            OutlinedTextField(
+                value = loginName,
+                onValueChange = { loginName = it },
+                label = { Text("账号") },
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = themeColor,
+                    focusedLabelColor = themeColor
+                )
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            OutlinedTextField(
+                value = password,
+                onValueChange = { password = it },
+                label = { Text("密码") },
+                modifier = Modifier.fillMaxWidth(),
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                singleLine = true,
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = themeColor,
+                    focusedLabelColor = themeColor
+                )
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            if (state.error != null) {
+                Text(text = state.error!!, color = Color.Red, fontSize = 14.sp)
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+
+            Button(
+                onClick = { viewModel.dispatch(LoginIntent.Login(loginName, password)) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                enabled = !state.isLoading,
+                colors = ButtonDefaults.buttonColors(containerColor = themeColor)
+            ) {
+                if (state.isLoading) {
+                    CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
+                } else {
+                    Text(text = "登 录", fontSize = 18.sp, color = Color.White)
+                }
             }
         }
     }
