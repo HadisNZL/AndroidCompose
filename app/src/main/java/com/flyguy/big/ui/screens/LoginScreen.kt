@@ -71,21 +71,26 @@ fun LoginScreen(
         
         Spacer(modifier = Modifier.height(40.dp))
 
-        OutlinedTextField(
+        TextField(
             value = loginName,
             onValueChange = { loginName = it },
             label = { Text("账号") },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = themeColor,
-                focusedLabelColor = themeColor
+            shape = RoundedCornerShape(16.dp),
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = themeColor.copy(alpha = 0.08f),
+                unfocusedContainerColor = Color(0xFFF5F5F5),
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                focusedLabelColor = themeColor,
+                cursorColor = themeColor
             )
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        OutlinedTextField(
+        TextField(
             value = password,
             onValueChange = { password = it },
             label = { Text("密码") },
@@ -93,9 +98,14 @@ fun LoginScreen(
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             singleLine = true,
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = themeColor,
-                focusedLabelColor = themeColor
+            shape = RoundedCornerShape(16.dp),
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = themeColor.copy(alpha = 0.08f),
+                unfocusedContainerColor = Color(0xFFF5F5F5),
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                focusedLabelColor = themeColor,
+                cursorColor = themeColor
             )
         )
 
