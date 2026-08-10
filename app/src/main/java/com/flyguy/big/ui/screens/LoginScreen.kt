@@ -8,6 +8,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -56,6 +57,13 @@ fun LoginScreen(
 
     val themeColor = colorResource(id = R.color.themeColor)
 
+    // 加载登录图标，若 ai_icon.png 不存在则回退到 Android 默认机器人图标
+    val loginIconPainter: Painter = try {
+        painterResource(id = R.drawable.ai_icon)
+    } catch (e: Exception) {
+        androidx.compose.ui.res.painterResource(id = android.R.drawable.sym_def_app_icon)
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -63,7 +71,7 @@ fun LoginScreen(
     ) {
         // 顶部居中图标
         Image(
-            painter = painterResource(id = R.drawable.ai_icon),
+            painter = loginIconPainter,
             contentDescription = "登录图标",
             modifier = Modifier
                 .size(80.dp)
