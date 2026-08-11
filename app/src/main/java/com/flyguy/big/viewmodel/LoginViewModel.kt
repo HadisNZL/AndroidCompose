@@ -52,7 +52,7 @@ class LoginViewModel @Inject constructor(
                 is NetworkResult.Error -> {
                     // 生产级：对于特定的错误，可以使用 Effect 弹出 Toast 而不是修改 State
                     if (result.code == 74135) {
-                        sendEffect(BaseEffect.ShowToast("账号异常，需二次验证"))
+                        sendEffect(BaseEffect.ShowToast("账号异常，请完成二次验证"))
                     } else {
                         updateState { it.copy(error = result.message) }
                     }
