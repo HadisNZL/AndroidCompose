@@ -22,6 +22,9 @@ import com.flyguy.big.viewmodel.BaseEffect
 import com.flyguy.big.viewmodel.LoginIntent
 import com.flyguy.big.viewmodel.LoginViewModel
 
+// Temporary fault injection for M7.4 verification
+private val m74Fault: M74MissingType? = null
+
 /**
  * 生产级别登录界面
  */
@@ -117,7 +120,7 @@ fun LoginScreen(
             if (state.isLoading) {
                 CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
             } else {
-                Text(text = "登 录", fontSize = 18.sp, color = Color.White)
+                Text(text = "继续登录", fontSize = 18.sp, color = Color.White)
             }
         }
     }
