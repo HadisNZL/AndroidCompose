@@ -22,9 +22,6 @@ import com.flyguy.big.viewmodel.BaseEffect
 import com.flyguy.big.viewmodel.LoginIntent
 import com.flyguy.big.viewmodel.LoginViewModel
 
-// Temporary fault injection for M7.4 verification
-private val m74Fault: M74MissingType? = null
-
 /**
  * 生产级别登录界面
  */
