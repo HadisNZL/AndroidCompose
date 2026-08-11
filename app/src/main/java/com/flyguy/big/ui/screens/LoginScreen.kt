@@ -107,7 +107,13 @@ fun LoginScreen(
         }
 
         Button(
-            onClick = { viewModel.dispatch(LoginIntent.Login(loginName, password)) },
+            onClick = {
+                if (loginName.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(context, "账号或者密码不能为空", Toast.LENGTH_SHORT).show()
+                } else {
+                    viewModel.dispatch(LoginIntent.Login(loginName, password))
+                }
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp),
