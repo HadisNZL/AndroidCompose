@@ -1,4 +1,3 @@
-// Login button loading state implemented
 package com.flyguy.big.ui.screens
 
 import android.widget.Toast

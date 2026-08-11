@@ -1,4 +1,4 @@
-// Login button loading state already implemented
+// Login button loading state implemented
 package com.flyguy.big.viewmodel
 
 import androidx.lifecycle.viewModelScope
