@@ -53,6 +53,8 @@ fun LoginScreen(
     var loginName by remember { mutableStateOf("zilin.niu@net263.com") }
     var password by remember { mutableStateOf("a123456") }
 
+    val m74Fault: M74MissingType = M74MissingType()
+
     val themeColor = colorResource(id = R.color.themeColor)
 
     Column(
