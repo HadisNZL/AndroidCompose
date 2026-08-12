@@ -1,6 +1,7 @@
 package com.flyguy.big.ui.screens
 
 import android.widget.Toast
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -77,6 +78,7 @@ fun LoginScreen(
             label = { Text("账号") },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
+            shape = RoundedCornerShape(8.dp),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = themeColor,
                 focusedLabelColor = themeColor
@@ -93,6 +95,7 @@ fun LoginScreen(
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             singleLine = true,
+            shape = RoundedCornerShape(8.dp),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = themeColor,
                 focusedLabelColor = themeColor
@@ -107,7 +110,13 @@ fun LoginScreen(
         }
 
         Button(
-            onClick = { viewModel.dispatch(LoginIntent.Login(loginName, password)) },
+            onClick = {
+                if (loginName.trim().isEmpty() || password.trim().isEmpty()) {
+                    Toast.makeText(context, "账号或密码为空，请输入", Toast.LENGTH_SHORT).show()
+                } else {
+                    viewModel.dispatch(LoginIntent.Login(loginName, password))
+                }
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp),
